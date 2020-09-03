@@ -1,0 +1,19 @@
+
+JDBC：java database connectivity
+JDBC由两个包组成：java.sql  javax.sql
+JDBC的特点（优势）：
+1.屏蔽不同数据库的差异（向下）
+2.提供统一抽象的接口，用户关心数据库具体实现（向上）
+3.封装了很多细节，程序员不需要关心
+
+Datasource 相关特点：
+1.在javax.sql 中定义了接口，由个数据库厂商来实现
+2.PreparedStatment 语句 提供cache
+3.提供数据库连接池的能力
+4.能支持不同厂商数据库的切换
+
+Datasource和MysqlDataSource没有连接池能力
+Apache dbcp 有连接池
+连接池的作用：
+1.连接可以重复利用，提高连接资源的利用率
+2.提高数据库访问的效率
