@@ -1,0 +1,67 @@
+### 数据库的基本概念
+
+1. 为什么需要数据库
+  a) 面试要考。
+
+2. 数据库解决的问题
+
+  b) 便于查询（检索）
+  c）便于管理、控制
+  d) 进行安全控制（权限控制）
+
+3. 数据库的分类
+  a) 关系型数据库
+  由表(table) 组成，表是有属性（Attribute）组成，也叫列 （Column ）、字段 （field）
+
+  Oracle、MySQL、Sql Server 都是数据库产品，或者叫 数据库系统。
+
+​       b）非关系型数据库
+
+3. RDBMS 
+   Relational Databa Management System 翻译成中文叫数据库管理系统。
+
+### 数据库的安装和配置
+1. mysql -u root -p 连接数据库
+
+2. show databases;
+
+3. 对比 mysql_home data 目录，数据保存在磁盘目录。
+
+4. mysql 连接 mysqld ,mysql 是客户端，mysqld 是服务端
+
+### SQL
+
+structure query language 结构化查询语言。用于和数据库交互。
+
+### 数据库操作
+
+1. 创建一个数据库，会在 MySQL Home 目录 的 data 目录生成一个新的目录。
+
+2. 创建一个表，会在数据库**data/数据库目录**下面生成两个文件，
+文件名称以表名命名。
+
+3. use class_13_db;
+
+create database class_13_db;
+
+create table class_13_table
+(
+  number int,
+  name varchar(20)
+);
+
+注意！！！
+
+SQL 语句后面要跟";"
+
+create、database、table、use 都是关键字，SQL 关键字不区分大小写。
+
+
+
+
+
+
+
+
+
+
