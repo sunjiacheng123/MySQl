@@ -1,0 +1,104 @@
+create table student(
+name varchar(20),
+sn int,
+mysql double(5,2),
+java int,
+english double(5,2)
+);
+
+insert into student values('lli',20191915,80,90,100);
+insert into student(name,sn,mysql) values('yyi',20191917,99);
+
+日期类型：		
+datetime 范围：1000~9999
+timetamp 范围：1970~2038   UTC时间
+YYYY-MM-DD HH:MM:SS
+
+使用关键字作为表名，只需加上``
+create table `select`();
+关键字和赋值不区分大小写
+
+show variables;
+
+约束（保证数据记录符合现实世界的意义）
+数据完整性：
+1.实体完整性 primary key
+2.参照完整性 foreign key
+3.用户自定义完整性 not null，unique，default，check
+
+primary key和 unique的区别
+unique 不能重复，但是可以为null
+primary key 不能重复 不能为null
+
+create table student2(
+name varchar(20),
+sn int primary key, 
+telno bigint unique,
+mysql double(5,2)
+);
+insert into student2 values('sss',123456,100,656);
+insert into student2(sn,telno,mysql) values(123457,102,33);
+
+insert into student2(name,telno,mysql) values('sdd',102,33);
+ERROR 1364 (HY000): Field 'sn' doesn't have a default value
+
+insert into student2(sn,name,mysql) values(123458,'pdd',36);
+insert into student2 values('qdd',333,100,33);
+ERROR 1062 (23000): Duplicate entry '100' for key 'telno'
+
+
+
+create database student_system;
+
+use student_system;
+
+create table student(
+name varchar(20) unique,
+sn int primary key,
+classid int,
+foreign key (classid) references class(id)
+
+);
+
+create table take(
+sn int ,
+cid int ,
+score double(5.2),
+primary key(sn,cid),
+foreign key (sn) references student(sn),
+foreign key (cid) references course(cid)
+);
+
+create table course(
+cid int primary key,
+name varchar(20),
+credit int not null
+);
+
+create table teacher(
+tid int primary key,
+name varchar(20) not null
+);
+
+create table teach(
+tid int ,
+cid int ,
+artcile int ,
+primary key(tid,cid)
+foreign key (tid) references teacher(tid),
+foreign key (cid) references course(cid)
+);
+
+create table class(
+name varchar(20) not null,
+id int primary key
+);
+交叉查询：
+select *from class,student;
+select *from class,student where class.id=student.classid;//设置where条件
+select student.name,student.classid,class.name from class,student where class.id=student.classid;//查询一个班的
+select 
+
+
+
+
