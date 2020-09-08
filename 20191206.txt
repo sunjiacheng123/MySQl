@@ -1,0 +1,184 @@
+﻿# 上节课内容回顾
+## 数据库分类
+1. 关系型
+mysql、sqlserver、Oracle
+关系数据库由表组成，也叫关系。表包含列，或者叫做字段、属性
+
+2. 非关系型
+
+## SQL
+SQL 结构化查询语言
+DDL create drop
+DML insert select delete 
+
+## 数据库特点
+1. 方便管理
+2. 便于查询
+3. 权限控制。
+
+mysql -u root -p
+
+set 查看系统环境命令
+services.msc 查看 windows 系统服务
+
+2019-12-06 课程内容
+
+## 数据库的操作
+1. show databases;
+2. create database if not exists db_name;
+3. use db_name;
+4. drop database if exists db_name;
+5. select database();
+
+## 数据库表的操作
+
+1. show tables;
+2. create table table_name(
+  fieldname type,fieldname2 type
+);
+3. drop table if exists table_name; 
+
+## 数据库表的增删改查（CRUD）
+- create -> insert:
+
+insert into table_name(col1,col2) values(v1, v2),
+       (v1,v2),
+       (v1,v2);
+       
+- retrieve ->select:
+1. 全列
+2. 指定列查询
+3. order by
+4. 条件 <=, <,= and, or,
+5. limit 
+
+- update:
+
+update table_name set col = xxx;
+
+- delete:
+delete from table_name where col = xxx;
+        
+### 查询
+
+3 where
+
+逻辑：and，or，not，&&, ||, !
+
+
+create table student(
+id int,
+name varchar(20),
+birthday timestamp
+);
+
+select database();查看当前工作在哪个数据库
+
+desc-->descride  描述
+
+show tables;  查询有哪些表
+
+desc tablename;   查看表的内容
+
+column 列
+
+drop table if exists tablename 删除表
+
+create table student1(
+id int,
+name varchar(20),
+qq_mile varchar(50)
+);
+
+insert into student1 values(1000,'slkk','123456@qq.com');
+insert into student1 values(1001,'sick','sick@qq.com');
+
+select * from student1;  查询表具体的内容有什么
+
+insert into student1(id,name) values(1001,'sick');插入部分数据，指定列插入
+
+insert into student1(id,name)values  指定列多行插入
+(1002,'lll'),
+(1003,'lkj');
+
+select * from student1;   全列查询
+select id,name from student1;  指定列查询
+select id+10,name from student1; 指定列查询并将id+10
+select id,name,100 from student1;指定列查询，指定第三列为100
++------+------+-----+
+| id   | name | 100 |
++------+------+-----+
+| 1000 | slkk | 100 |
+| 1001 | sick | 100 |
+| 1002 | lll  | 100 |
+| 1002 | lll  | 100 |
+| 1002 | lll  | 100 |
+| 1001 | sick | 100 |
+| 1002 | lll  | 100 |
+| 1003 | lkj  | 100 |
++------+------+-----+
+8 rows in set (0.00 sec)
+
+select id,name as a,100 from student1; 给name属性起别名a
+
+select distinct id from student1;  去重
+
+select * from student1 order by id asc;  asc升序排序  desc 降序
+
+create table score(
+a int,
+b int,
+c int,
+d int
+);
+
+insert into score values(100,98,87,67);
+insert into score values(25,67,82,69);
+insert into score values(85,88,73,82);
+
+select * from score where a=100;查询a<100的
+select * from score where a<95&& a>60;  查询 60<a<95的
+select * from score where a between 60 and 95; 
+select * from score where a like '1%';  模糊查询 1后面几位不确定
+select * from score where a like '1_';  模糊查询 1后面只有一位
+select * from score limit 1; 从0开始 查1个
+select * from score limit 1,3; 从1开始 查3个
+select * from score limit 1 offset 2; 从2开始 查1个
+
+update score set a=100;将所有a都改为100
+update score set a=50 where b=98;  把b=98的a改为50
+
+
+
+use class_13_db_1;
+create table stu_score (
+name varchar(20),
+num int,
+chinese int,
+math int,
+english int,
+mysql int
+);
+insert into stu_score values('lll',01,85,99,75,88);
+insert into stu_score values('www',03,88,56,77,53);
+insert into stu_score values('ccc',04,83,96,65,75);
+insert into stu_score values('ddd',05,92,100,45,66);
+insert into stu_score (name,num,chinese) values('sss',02,88);
+select * from stu_score;
+select name,num,chinese+math+english+mysql from stu_score;
+select * from stu_score order by chinese+math+english+mysql;
+select * from stu_score order by english;
+select * from stu_score where english<60 && math<60;
+select * from stu_score where math<90 && math>80;
+select * from stu_score where math<100 && math>90;
+select * from stu_score where math is NULL;
+select * from stu_score limit 2;
+update stu_score set chinese=chinese*2;
+update stu_score set math=math+100 where name='lll';
+delete from stu_score where name='lll';
+
+
+
+
+
+
